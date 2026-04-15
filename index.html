@@ -1551,40 +1551,16 @@ const CHAIN_IDS = {
   bnb: 56
 };
 
-// Network icons (inline SVG) - from Primer Pay extension
+// Network icons - using actual logo images
 const NETWORK_ICONS = {
-  base: {
-    name: 'Base',
-    svg: `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#0052FF"/><path d="M12 6C8.7 6 6 8.7 6 12s2.7 6 6 6 6-2.7 6-6-2.7-6-6-6zm0 9.5c-1.9 0-3.5-1.6-3.5-3.5S10.1 8.5 12 8.5s3.5 1.6 3.5 3.5-1.6 3.5-3.5 3.5z" fill="#fff"/></svg>`
-  },
-  ethereum: {
-    name: 'Ethereum',
-    svg: `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#627EEA"/><path d="M12 4L7 12l5 3 5-3-5-8z" fill="#fff" opacity="0.6"/><path d="M12 16l-5-3 5 7 5-7-5 3z" fill="#fff"/></svg>`
-  },
-  solana: {
-    name: 'Solana',
-    svg: `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#000"/><path d="M7 15.5h8.5l1.5-1.5H8.5L7 15.5z" fill="url(#sol1)"/><path d="M7 10h8.5L17 8.5H8.5L7 10z" fill="url(#sol2)"/><path d="M17 12.75H8.5L7 14.25h8.5l1.5-1.5z" fill="url(#sol3)"/><defs><linearGradient id="sol1" x1="7" y1="14.75" x2="17" y2="14.75"><stop stop-color="#00FFA3"/><stop offset="1" stop-color="#DC1FFF"/></linearGradient><linearGradient id="sol2" x1="7" y1="9.25" x2="17" y2="9.25"><stop stop-color="#00FFA3"/><stop offset="1" stop-color="#DC1FFF"/></linearGradient><linearGradient id="sol3" x1="7" y1="13.5" x2="17" y2="13.5"><stop stop-color="#00FFA3"/><stop offset="1" stop-color="#DC1FFF"/></linearGradient></defs></svg>`
-  },
-  bnb: {
-    name: 'BNB Chain',
-    svg: `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#F3BA2F"/><path fill="#fff" d="M12 7l-3 3 1 1 2-2 2 2 1-1-3-3zm-5 5l-1 1 1 1 1-1-1-1zm10 0l-1 1 1 1 1-1-1-1zm-5 2l-2 2-1-1 3 3 3-3-1 1-2-2z"/></svg>`
-  },
-  skale: {
-    name: 'SKALE',
-    svg: `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#000"/><text x="6" y="17" font-size="14" fill="#fff" font-family="Arial" font-weight="bold">[S</text></svg>`
-  },
-  polygon: {
-    name: 'Polygon',
-    svg: `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#8247E5"/><path d="M15.5 9.5l-2-1.2c-.3-.2-.7-.2-1 0l-2 1.2c-.3.2-.5.5-.5.9v2.4c0 .4.2.7.5.9l2 1.2c.3.2.7.2 1 0l2-1.2c.3-.2.5-.5.5-.9v-2.4c0-.4-.2-.7-.5-.9z" fill="#fff"/><path d="M9.5 13.3l-1.5-.9c-.2-.1-.3-.3-.3-.5v-1.8c0-.2.1-.4.3-.5l1.5-.9" stroke="#fff" stroke-width="0.8" fill="none"/></svg>`
-  },
-  arbitrum: {
-    name: 'Arbitrum',
-    svg: `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#28A0F0"/><path d="M12 5L6 12l6 7 6-7-6-7z" fill="#fff"/><path d="M12 8l-3 4 3 3.5 3-3.5-3-4z" fill="#28A0F0"/></svg>`
-  },
-  optimism: {
-    name: 'Optimism',
-    svg: `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#FF0420"/><circle cx="12" cy="12" r="6" fill="#fff"/></svg>`
-  }
+  base: { name: 'Base', logo: 'assets/networks/base.svg' },
+  ethereum: { name: 'Ethereum', logo: 'assets/networks/ethereum.svg' },
+  solana: { name: 'Solana', logo: 'assets/networks/solana.svg' },
+  bnb: { name: 'BNB Chain', logo: 'assets/networks/bnb.svg' },
+  skale: { name: 'SKALE', logo: 'assets/networks/skale.svg' },
+  polygon: { name: 'Polygon', logo: 'assets/networks/polygon.svg' },
+  arbitrum: { name: 'Arbitrum', logo: 'assets/networks/arbitrum.svg' },
+  optimism: { name: 'Optimism', logo: 'assets/networks/optimism.svg' }
 };
 
 // Build facilitator info section
@@ -1595,7 +1571,7 @@ function buildFacilitatorInfo(facilitator, projectId) {
     .map(net => {
       const icon = NETWORK_ICONS[net.toLowerCase()];
       if (icon) {
-        return `<span class="network-badge">${icon.svg}${icon.name}</span>`;
+        return `<span class="network-badge"><img src="${icon.logo}" alt="${icon.name}">${icon.name}</span>`;
       }
       return `<span class="network-badge">${net}</span>`;
     })
